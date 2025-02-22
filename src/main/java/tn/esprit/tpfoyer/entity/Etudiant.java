@@ -2,6 +2,8 @@ package tn.esprit.tpfoyer.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +11,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,6 +26,8 @@ public class Etudiant implements Serializable {
     private Long cin;
     private String ecole;
     private Date dateNaissance;
+    @ManyToMany
+    private List<Reservation> reservations;
 
 
 }

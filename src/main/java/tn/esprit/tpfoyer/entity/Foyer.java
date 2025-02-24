@@ -3,6 +3,7 @@ package tn.esprit.tpfoyer.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,5 +24,7 @@ public class Foyer implements Serializable {
     private Long capaciteFoyer;
     @OneToMany(mappedBy = "foyer")
     private List<Bloc> bloc;
+    @OneToOne
+    private Universite universite;
 
 }

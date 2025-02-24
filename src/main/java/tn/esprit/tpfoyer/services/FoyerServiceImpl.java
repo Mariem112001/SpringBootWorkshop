@@ -35,4 +35,9 @@ public class FoyerServiceImpl implements IFoyerServices {
         foyerRepository.deleteById(id);
     }
 
+    @Override
+    public Foyer getNomCapacite(String nom, Long capacite) {
+        return foyerRepository.findByNomFoyerAndCapaciteFoyer(nom, capacite);
+    }
+
 }

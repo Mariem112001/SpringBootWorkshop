@@ -10,5 +10,5 @@ public interface IFoyerServices {
     public List<Foyer> findAll();
     public Foyer save(Foyer foyer);
     public void delete(Long id);
-
+public Foyer getNomCapacite(String nom, Long capacite);
 }

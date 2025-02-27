@@ -25,4 +25,9 @@ public class Foyer implements Serializable {
     @OneToOne
     private Universite universite;
 
+
+    public long getIdFoyer() {
+        return idFoyer;
+
+    }
 }

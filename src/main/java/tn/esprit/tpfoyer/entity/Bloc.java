@@ -1,9 +1,6 @@
 package tn.esprit.tpfoyer.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Bloc implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idBloc;
     private String nomBloc;
     private Long capaciteBloc;
@@ -26,5 +24,9 @@ public class Bloc implements Serializable {
     private Foyer foyer;
     @OneToMany (mappedBy = "bloc")
     private List<Chambre> chambres;
+
+    public long getIdBloc() {
+        return idBloc;
+    }
 
 }

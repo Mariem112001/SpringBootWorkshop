@@ -17,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Reservation implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReservation;
     private Date anneeUniversitaire;
     private boolean estValide;
@@ -24,6 +25,13 @@ public class Reservation implements Serializable {
     private Chambre chambre;
     @ManyToMany(mappedBy = "reservations")
     private List<Etudiant> etudiants;
+
+
+
+    public long  getIdReservation() {
+        return idReservation;
+
+    }
 
 
 

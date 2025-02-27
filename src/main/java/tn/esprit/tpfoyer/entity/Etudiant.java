@@ -1,9 +1,6 @@
 package tn.esprit.tpfoyer.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Etudiant implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEtudiant;
     private String nomEt;
     private String prenomEt;
@@ -28,6 +26,11 @@ public class Etudiant implements Serializable {
     private Date dateNaissance;
     @ManyToMany
     private List<Reservation> reservations;
+
+
+            public long getIdEtudiant() {
+        return idEtudiant;
+    }
 
 
 }

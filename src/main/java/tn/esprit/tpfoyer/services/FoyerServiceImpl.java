@@ -40,4 +40,35 @@ public class FoyerServiceImpl implements IFoyerServices {
         return foyerRepository.findByNomFoyerAndCapaciteFoyer(nom, capacite);
     }
 
+    @Override
+    public List<Foyer> retrieveAllFoyers() {
+        return List.of();
+    }
+
+    @Override
+    public Foyer addFoyer(Foyer f)
+        {
+            return foyerRepository.save(f);
+        }
+
+
+    @Override
+    public Foyer updateFoyer(Foyer f) {
+        if (foyerRepository.existsById(f.getIdFoyer())) {
+            return foyerRepository.save(f);
+        }
+        return null;
+    }
+
+    @Override
+    public Foyer retrieveFoyer(long idFoyer) {
+        return foyerRepository.findById(idFoyer).orElse(null);
+    }
+
+    @Override
+    public void removeFoyer(long idFoyer) {
+
+        foyerRepository.deleteById(idFoyer);
+    }
+
 }

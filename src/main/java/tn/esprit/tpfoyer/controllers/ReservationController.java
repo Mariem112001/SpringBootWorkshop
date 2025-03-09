@@ -1,6 +1,7 @@
 package tn.esprit.tpfoyer.controllers;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.entity.Reservation;
 import tn.esprit.tpfoyer.services.IReservationServices;
@@ -30,5 +31,13 @@ public class ReservationController {
     public Reservation updateReservation(@PathVariable("id") Long idReservation, @RequestBody Reservation reservation) {
 
         return reservationService.updateReservation(reservation);
+    }
+
+    @GetMapping("/parAnneeUniversitaire")
+    public ResponseEntity<List<Reservation>> getReservationsByAnnee(
+            @RequestParam int anneeUniversitaire,
+            @RequestParam String nomUniversite) {
+        List<Reservation> reservations = reservationService.getReservationParAnneeUniversitaireEtNomUniversite(anneeUniversitaire, nomUniversite);
+        return ResponseEntity.ok(reservations);
     }
 }

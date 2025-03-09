@@ -32,5 +32,9 @@ public class ReservationServiceImpl implements IReservationServices{
     public Reservation retrieveReservation(Long idReservation) {
         return reservationRepository.findById(idReservation).orElse(null);
     }
+    @Override
+    public List<Reservation> getReservationParAnneeUniversitaireEtNomUniversite(int anneeUniversitaire, String nomUniversite) {
+        return reservationRepository.findReservationsByAnneeAndUniversite(anneeUniversitaire, nomUniversite);
+    }
 
 }

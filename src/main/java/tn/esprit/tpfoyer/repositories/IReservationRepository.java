@@ -7,8 +7,15 @@ import org.springframework.stereotype.Repository;
 import tn.esprit.tpfoyer.entity.Reservation;
 import tn.esprit.tpfoyer.entity.Universite;
 
+import java.util.List;
+
 @Repository
 public interface IReservationRepository extends JpaRepository<Reservation, Long> {
 
 
-}
+    @Query("SELECT r FROM Reservation r " +
+            "WHERE FUNCTION('YEAR', r.anneeUniversitaire) = :anneeUniversitaire " +
+            "AND r.chambre.bloc.foyer.universite.nomUniversite = :nomUniversite")
+    List<Reservation> findReservationsByAnneeAndUniversite(
+            @Param("anneeUniversitaire") int anneeUniversitaire,
+            @Param("nomUniversite") String nomUniversite);}

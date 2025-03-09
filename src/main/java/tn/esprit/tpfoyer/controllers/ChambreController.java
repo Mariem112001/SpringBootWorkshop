@@ -1,8 +1,10 @@
 package tn.esprit.tpfoyer.controllers;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.entity.Chambre;
+import tn.esprit.tpfoyer.entity.TypeChambre;
 import tn.esprit.tpfoyer.services.IChambreServices;
 
 import java.util.List;
@@ -35,5 +37,13 @@ public class ChambreController {
     public Chambre updateChambre(@PathVariable("id") long idChambre, @RequestBody Chambre chambre) {
 
         return chambreService.updateChambre(chambre);
+    }
+
+    @GetMapping("/parBloc")
+    public ResponseEntity<List<Chambre>> getChambresParBloc(
+            @RequestParam long idBloc,
+            @RequestParam TypeChambre typeC) {
+        List<Chambre> chambres = chambreService.getChambresParBlocEtType(idBloc, typeC);
+        return ResponseEntity.ok(chambres);
     }
 }

@@ -9,6 +9,7 @@ public interface IReservationServices {
     List<Reservation> retrieveAllReservation();
     Reservation updateReservation (Reservation res);
     Reservation retrieveReservation (Long idReservation);
+    List<Reservation> getReservationParAnneeUniversitaireEtNomUniversite(int anneeUniversitaire, String nomUniversite);
 
 
 }

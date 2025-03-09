@@ -1,6 +1,7 @@
 package tn.esprit.tpfoyer.controllers;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.entity.Universite;
 import tn.esprit.tpfoyer.services.IUniversiteServices;
@@ -36,5 +37,20 @@ public class UniversiteController {
     @GetMapping("/getById/{id}")
     public Universite retrieveUniversite(@PathVariable("id") long idUniversite) {
         return universiteService.retrieveUniversite(idUniversite);
+    }
+
+    @PutMapping("/affecter/{idFoyer}/{nomUniversite}")
+    public Universite affecterFoyerAUniversite(
+            @PathVariable long idFoyer,
+            @PathVariable String nomUniversite) {
+
+        Universite universite = universiteService.affecterFoyerAUniversite(idFoyer, nomUniversite);
+        return universite;
+    }
+
+    @PutMapping("/desaffecterFoyer/{idUniversite}")
+    public ResponseEntity<Universite> desaffecterFoyer(@PathVariable long idUniversite) {
+        Universite universite = universiteService.desaffecterFoyerAUniversite(idUniversite);
+        return ResponseEntity.ok(universite);
     }
 }

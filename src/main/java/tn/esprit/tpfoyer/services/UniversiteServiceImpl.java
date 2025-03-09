@@ -1,18 +1,22 @@
 package tn.esprit.tpfoyer.services;
 
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.tpfoyer.entity.Foyer;
 import tn.esprit.tpfoyer.entity.Universite;
 import tn.esprit.tpfoyer.repositories.IUniversiteRepository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class UniversiteServiceImpl implements IUniversiteServices {
     IUniversiteRepository universiteRepository;
+    IUniversiteRepository foyerRepository;
 
     @Override
     public List<Universite> retrieveAllUniversities() {
@@ -35,6 +39,33 @@ public class UniversiteServiceImpl implements IUniversiteServices {
     @Override
     public Universite retrieveUniversite(long idUniversite) {
 
+        return universiteRepository.findById(idUniversite).orElse(null);
+    }
+
+    @Override
+    public Universite affecterFoyerAUniversite(long idFoyer, String nomUniversite) {
+        Optional<Universite> foyer = foyerRepository.findById(idFoyer);
+        if (foyer.isEmpty()) {
+            throw new RuntimeException(" Foyer introuvable !");
+        }
+        Foyer foyerr = foyer.get().getFoyer();
+
+        // Récupérer l'université par son nom
+        Universite universite = universiteRepository.findByNomUniversite(nomUniversite);
+        if (universite == null) {
+            throw new RuntimeException("Université introuvable !");
+        }
+
+        // Affecter le foyer à l'université
+        universite.setFoyer(foyerr);
+        return universiteRepository.save(universite);
+    }
+
+
+    @Transactional
+    @Override
+    public Universite desaffecterFoyerAUniversite(long idUniversite) {
+        universiteRepository.desaffecterFoyer(idUniversite);
         return universiteRepository.findById(idUniversite).orElse(null);
     }
 }

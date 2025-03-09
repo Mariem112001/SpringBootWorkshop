@@ -1,6 +1,7 @@
 package tn.esprit.tpfoyer.controllers;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.entity.Bloc;
 import tn.esprit.tpfoyer.services.IBlocServices;
@@ -41,5 +42,11 @@ public class BlocController {
     @DeleteMapping("/removeBloc/{id}")
     public void removeBloc(@PathVariable("id") long idBloc) {
         blocService.removeBloc(idBloc);
+    }
+
+    @PutMapping("/affecterChambres/{idBloc}")
+    public ResponseEntity<Bloc> affecterChambres(@PathVariable long idBloc, @RequestBody List<Long> numChambres) {
+        Bloc bloc = blocService.affecterChambresABloc(numChambres, idBloc);
+        return ResponseEntity.ok(bloc);
     }
 }

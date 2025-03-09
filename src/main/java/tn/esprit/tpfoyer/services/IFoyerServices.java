@@ -1,6 +1,7 @@
 package tn.esprit.tpfoyer.services;
 
 import tn.esprit.tpfoyer.entity.Foyer;
+import tn.esprit.tpfoyer.entity.Universite;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ public Foyer getNomCapacite(String nom, Long capacite);
     Foyer updateFoyer (Foyer f);
     Foyer retrieveFoyer (long idFoyer);
     void removeFoyer (long idFoyer);
+
+
 
 
 }

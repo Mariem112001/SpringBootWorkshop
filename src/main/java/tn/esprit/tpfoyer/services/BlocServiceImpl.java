@@ -1,9 +1,11 @@
 package tn.esprit.tpfoyer.services;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.tpfoyer.entity.Bloc;
 import tn.esprit.tpfoyer.repositories.IBlocRepository;
+import tn.esprit.tpfoyer.repositories.IChambreReposirtory;
 
 import java.util.List;
 
@@ -12,6 +14,9 @@ import java.util.List;
 public class BlocServiceImpl implements IBlocServices {
 
     IBlocRepository iBlocRepository;
+    private IBlocRepository blocRepository;
+    private IChambreReposirtory chambreRepository;
+
 
     @Override
     public List<Bloc> retrieveBlocs() {
@@ -40,5 +45,11 @@ public class BlocServiceImpl implements IBlocServices {
     public void removeBloc(long idBloc) {
         iBlocRepository.deleteById(idBloc);
 
+    }
+    @Transactional
+    @Override
+    public Bloc affecterChambresABloc(List<Long> numChambre, long idBloc) {
+        chambreRepository.affecterChambres(numChambre, idBloc);
+        return blocRepository.findById(idBloc).orElse(null);
     }
 }

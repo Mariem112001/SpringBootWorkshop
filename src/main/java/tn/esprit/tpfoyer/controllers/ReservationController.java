@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.entity.Reservation;
+import tn.esprit.tpfoyer.entity.Universite;
 import tn.esprit.tpfoyer.services.IReservationServices;
+import tn.esprit.tpfoyer.services.IUniversiteServices;
 
 import java.util.List;
 
@@ -13,6 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 public class ReservationController {
     IReservationServices reservationService;
+    IUniversiteServices universiteService;
+
 
 
     @GetMapping("/getAllReservations")
@@ -33,11 +37,14 @@ public class ReservationController {
         return reservationService.updateReservation(reservation);
     }
 
+
     @GetMapping("/parAnneeUniversitaire")
     public ResponseEntity<List<Reservation>> getReservationsByAnnee(
             @RequestParam int anneeUniversitaire,
             @RequestParam String nomUniversite) {
         List<Reservation> reservations = reservationService.getReservationParAnneeUniversitaireEtNomUniversite(anneeUniversitaire, nomUniversite);
         return ResponseEntity.ok(reservations);
+
+
     }
 }

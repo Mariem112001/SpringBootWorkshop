@@ -56,7 +56,7 @@ public class UniversiteServiceImpl implements IUniversiteServices {
             throw new RuntimeException("Université introuvable !");
         }
 
-        // Affecter le foyer à l'université
+        // Affecter le foyer à l'université // universite : MASTER et foyer : slave => universite.setFoyer
         universite.setFoyer(foyerr);
         return universiteRepository.save(universite);
     }

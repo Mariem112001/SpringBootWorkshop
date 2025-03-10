@@ -15,7 +15,7 @@ public interface IUniversiteRepository extends JpaRepository<Universite, Long> {
     @Query("SELECT u FROM Universite u WHERE u.nomUniversite = :nomUniversite")
     Universite findByNomUniversite(@Param("nomUniversite") String nomUniversite);
 
-    @Modifying
+
     @Query("UPDATE Universite u SET u.foyer = NULL WHERE u.idUniversite = :idUniversite")
     void desaffecterFoyer(@Param("idUniversite") long idUniversite);
 

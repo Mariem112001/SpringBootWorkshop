@@ -1,6 +1,7 @@
 package tn.esprit.tpfoyer.controllers;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.entity.Foyer;
 import tn.esprit.tpfoyer.entity.Universite;
@@ -27,5 +28,13 @@ public class FoyerController {
    return foyerService.getNomCapacite(nom, capacite);
     }
 
+    @PostMapping("/ajouterFoyer")
+    public ResponseEntity<Foyer> ajouterFoyerEtAffecterAUniversite(
+            @RequestBody Foyer foyer,
+            @RequestParam long idUniversite) {
+
+        Foyer newFoyer = foyerService.ajouterFoyerEtAffecterAUniversite(foyer, idUniversite);
+        return ResponseEntity.ok(newFoyer);
+    }
 
 }

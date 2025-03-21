@@ -18,7 +18,7 @@ public Foyer getNomCapacite(String nom, Long capacite);
     Foyer retrieveFoyer (long idFoyer);
     void removeFoyer (long idFoyer);
 
-
+    Foyer ajouterFoyerEtAffecterAUniversite(Foyer foyer, long idUniversite);
 
 
 }

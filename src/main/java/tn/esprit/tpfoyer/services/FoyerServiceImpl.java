@@ -3,8 +3,10 @@ package tn.esprit.tpfoyer.services;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tn.esprit.tpfoyer.entity.Bloc;
 import tn.esprit.tpfoyer.entity.Foyer;
 import tn.esprit.tpfoyer.entity.Universite;
+import tn.esprit.tpfoyer.repositories.IBlocRepository;
 import tn.esprit.tpfoyer.repositories.IChambreReposirtory;
 import tn.esprit.tpfoyer.repositories.IFoyerRepository;
 import tn.esprit.tpfoyer.repositories.IUniversiteRepository;
@@ -17,6 +19,8 @@ import java.util.Optional;
 public class FoyerServiceImpl implements IFoyerServices {
 
     IFoyerRepository foyerRepository;
+    IUniversiteRepository universiteRepository;
+    IBlocRepository blocRepository;
 
     IChambreReposirtory chambreReposirtory;
     @Override
@@ -75,7 +79,22 @@ public class FoyerServiceImpl implements IFoyerServices {
         foyerRepository.deleteById(idFoyer);
     }
 
+    public Foyer ajouterFoyerEtAffecterAUniversite(Foyer foyer, long idUniversite) {
+        Universite universite = universiteRepository.findById(idUniversite)
+                .orElseThrow(() -> new RuntimeException("Université non trouvée"));
 
+        foyer = foyerRepository.save(foyer);
+
+        for (Bloc bloc : foyer.getBlocs()) {
+            bloc.setFoyer(foyer);
+            blocRepository.save(bloc);
+        }
+
+        universite.setFoyer(foyer);
+        universiteRepository.save(universite);
+
+        return foyer;
+    }
 
 
 }

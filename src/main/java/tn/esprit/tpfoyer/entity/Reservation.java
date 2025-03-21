@@ -34,5 +34,9 @@ public class Reservation implements Serializable {
     }
 
 
+    public void setNumReservation(String s) {
+    }
 
+    public void setEtudiant(Etudiant etudiant) {
+    }
 }

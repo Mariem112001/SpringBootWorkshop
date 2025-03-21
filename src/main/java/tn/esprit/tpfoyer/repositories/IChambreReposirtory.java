@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import tn.esprit.tpfoyer.entity.Bloc;
 import tn.esprit.tpfoyer.entity.Chambre;
 import tn.esprit.tpfoyer.entity.TypeChambre;
 
@@ -28,4 +29,6 @@ public interface IChambreReposirtory extends CrudRepository<Chambre, Long> {
     List<Chambre> findChambresByBlocAndTypeJPQL(@Param("idBloc") long idBloc, @Param("typeC") TypeChambre typeC);
 
     List<Chambre> findByBlocIdBlocAndTypeChambre(long idBloc, TypeChambre typeC);
+
+    Chambre findFirstByBlocAndDisponible(Bloc bloc, boolean b);
 }

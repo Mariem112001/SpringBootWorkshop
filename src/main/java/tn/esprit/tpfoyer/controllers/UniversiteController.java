@@ -1,8 +1,10 @@
 package tn.esprit.tpfoyer.controllers;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.tpfoyer.entity.Foyer;
 import tn.esprit.tpfoyer.entity.Universite;
 import tn.esprit.tpfoyer.services.IUniversiteServices;
 
@@ -10,8 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/universite")
-@AllArgsConstructor
+
 public class UniversiteController {
+    @Autowired
+
     IUniversiteServices universiteService;
 
 
@@ -40,17 +44,17 @@ public class UniversiteController {
     }
 
     @PutMapping("/affecter/{idFoyer}/{nomUniversite}")
-    public Universite affecterFoyerAUniversite(
-            @PathVariable long idFoyer,
-            @PathVariable String nomUniversite) {
+    public Foyer affecterFoyerAUniversite(
+            @PathVariable("idFoyer") long idFoyer,
+            @PathVariable("nomUniversite") String nomUniversite) {
 
-        Universite universite = universiteService.affecterFoyerAUniversite(idFoyer, nomUniversite);
-        return universite;
+       return universiteService.affecterFoyerAUniversite(idFoyer, nomUniversite);
+
     }
 
     @PutMapping("/desaffecterFoyer/{idUniversite}")
-    public ResponseEntity<Universite> desaffecterFoyer(@PathVariable long idUniversite) {
-        Universite universite = universiteService.desaffecterFoyerAUniversite(idUniversite);
-        return ResponseEntity.ok(universite);
+    public ResponseEntity<Foyer> desaffecterFoyer(@PathVariable("idUniversite") long idUniversite) {
+        Foyer foyer = universiteService.desaffecterFoyerAUniversite(idUniversite);
+        return ResponseEntity.ok(foyer);
     }
 }

@@ -47,4 +47,12 @@ public class ReservationController {
 
 
     }
+    @PostMapping("/ajouter")
+    public ResponseEntity<Reservation> ajouterReservation(
+            @RequestParam long idBloc,
+            @RequestParam long cinEtudiant) {
+
+        Reservation newReservation = reservationService.ajouterReservation(idBloc, cinEtudiant);
+        return ResponseEntity.ok(newReservation);
+    }
 }

@@ -1,5 +1,6 @@
 package tn.esprit.tpfoyer.services;
 
+import tn.esprit.tpfoyer.entity.Foyer;
 import tn.esprit.tpfoyer.entity.Universite;
 
 import java.util.List;
@@ -9,9 +10,9 @@ public interface IUniversiteServices {
     Universite addUniversite (Universite u);
     Universite updateUniversite (Universite u);
     Universite retrieveUniversite (long idUniversite);
-    public Universite affecterFoyerAUniversite (long idFoyer, String
+    public Foyer affecterFoyerAUniversite (long idFoyer, String
             nomUniversite);
 
-    Universite desaffecterFoyerAUniversite(long idUniversite);
+Foyer desaffecterFoyerAUniversite(long idUniversite);
 
 }

@@ -30,4 +30,8 @@ public class Foyer implements Serializable {
         return idFoyer;
 
     }
+
+    public Bloc[] getBlocs() {
+        return bloc.toArray(new Bloc[bloc.size()]);
+    }
 }

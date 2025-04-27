@@ -37,21 +37,32 @@ public class ChambreServiceImpl implements IChambreServices {
         }
         return null;
     }
-    @Override
-    public List<Chambre> getChambresNonReserveParNomUniversiteEtTypeChambre(String nomUniversite, TypeChambre type) {
-        Universite universite = universiteRepository.findByNomUniversite(nomUniversite);
-        if (universite == null || universite.getFoyer() == null) {
-            return Collections.emptyList();
-        }
-        return chambreRepository.findChambresNonReservees(universite.getFoyer().getNomFoyer(), type);
-    }
+//    @Override
+//    public List<Chambre> getChambresNonReserveParNomUniversiteEtTypeChambre(String nomUniversite, TypeChambre type) {
+//        Universite universite = universiteRepository.findByNomUniversite(nomUniversite);
+//        if (universite == null || universite.getFoyer() == null) {
+//            return Collections.emptyList();
+//        }
+//        return chambreRepository.findChambresNonReservees(universite.getFoyer().getNomFoyer(), type);
+//    }
 
     @Override
     public Chambre retrieveChambre(long idChambre) {
         return chambreReposirtory.findById(idChambre).orElse(null);
     }
+
+    @Override
+    public List<Chambre> getChambresNonReserveParNomUniversiteEtTypeChambre(String nomUniversite, TypeChambre type) {
+        return List.of();
+    }
+
     @Override
     public List<Chambre> getChambresParBlocEtType(long idBloc, TypeChambre typeC) {
-        return chambreRepository.findByBlocIdBlocAndTypeChambre(idBloc, typeC);
+        return List.of();
     }
+
+//    @Override
+//    public List<Chambre> getChambresParBlocEtType(long idBloc, TypeChambre typeC) {
+//        return chambreRepository.findByBlocIdBlocAndTypeChambre(idBloc, typeC);
+//    }
 }

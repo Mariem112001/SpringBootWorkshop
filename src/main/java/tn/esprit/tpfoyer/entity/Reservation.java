@@ -38,5 +38,6 @@ public class Reservation implements Serializable {
     }
 
     public void setEtudiant(Etudiant etudiant) {
+        
     }
 }

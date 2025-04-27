@@ -43,26 +43,31 @@ public class ReservationServiceImpl implements IReservationServices {
         return reservationRepository.findReservationsByAnneeAndUniversite(anneeUniversitaire, nomUniversite);
     }
 
+    @Override
     public Reservation ajouterReservation(long idBloc, long cinEtudiant) {
-        Bloc bloc = blocRepository.findById(idBloc)
-                .orElseThrow(() -> new RuntimeException("Bloc non trouvé"));
-
-        Etudiant etudiant = (Etudiant) etudiantRepository.findByCin(cinEtudiant)
-                .orElseThrow(() -> new RuntimeException("Étudiant non trouvé"));
-
-        Chambre chambreDisponible = chambreRepository.findFirstByBlocAndDisponible(bloc, true);
-
-        if (chambreDisponible == null) {
-            throw new RuntimeException("Aucune chambre disponible !");
-        }
-
-        Reservation reservation = new Reservation();
-        reservation.setNumReservation(chambreDisponible.getIdChambre() + "-" + bloc.getNomBloc() + "-2024");
-        reservation.setEstValide(true);
-        reservation.setChambre(chambreDisponible);
-        reservation.setEtudiant(etudiant);
-
-        return reservationRepository.save(reservation);
-
+        return null;
     }
+
+//    public Reservation ajouterReservation(long idBloc, long cinEtudiant) {
+//        Bloc bloc = blocRepository.findById(idBloc)
+//                .orElseThrow(() -> new RuntimeException("Bloc non trouvé"));
+//
+//        Etudiant etudiant = (Etudiant) etudiantRepository.findByCin(cinEtudiant)
+//                .orElseThrow(() -> new RuntimeException("Étudiant non trouvé"));
+//
+//        Chambre chambreDisponible = chambreRepository.findFirstByBlocAndDisponible(bloc, true);
+//
+//        if (chambreDisponible == null) {
+//            throw new RuntimeException("Aucune chambre disponible !");
+//        }
+//
+//        Reservation reservation = new Reservation();
+//        reservation.setNumReservation(chambreDisponible.getIdChambre() + "-" + bloc.getNomBloc() + "-2024");
+//        reservation.setEstValide(true);
+//        reservation.setChambre(chambreDisponible);
+//        reservation.setEtudiant(etudiant);
+//
+//        return reservationRepository.save(reservation);
+//
+//    }
 }

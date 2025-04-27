@@ -46,10 +46,15 @@ public class BlocServiceImpl implements IBlocServices {
         iBlocRepository.deleteById(idBloc);
 
     }
-    @Transactional
+
     @Override
-    public Bloc affecterChambresABloc(List<Long> numChambre, long idBloc) {
-        chambreRepository.affecterChambres(numChambre, idBloc);
-        return blocRepository.findById(idBloc).orElse(null);
+    public Bloc affecterChambresABloc(List<Long> numChambres, long idBloc) {
+        return null;
     }
+//    @Transactional
+//    @Override
+//    public Bloc affecterChambresABloc(List<Long> numChambre, long idBloc) {
+//        chambreRepository.affecterChambres(numChambre, idBloc);
+//        return blocRepository.findById(idBloc).orElse(null);
+//    }
 }

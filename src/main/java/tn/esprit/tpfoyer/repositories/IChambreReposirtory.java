@@ -14,21 +14,18 @@ import java.util.List;
 @Repository
 public interface IChambreReposirtory extends CrudRepository<Chambre, Long> {
 
-    @Modifying
-    @Query("UPDATE Chambre c SET c.bloc.idBloc = :idBloc WHERE c.numeroChambre=:numChambres")
-    void affecterChambres(@Param("numChambres") List<Long> numChambres, @Param("idBloc") long idBloc);
+//    @Modifying
+//    @Query("UPDATE Chambre c SET c.bloc.idBloc = :idBloc WHERE c.numeroChambre=:numChambres")
+//    void affecterChambres(@Param("numChambres") List<Long> numChambres, @Param("idBloc") long idBloc);
+//
 
-    @Query("SELECT c FROM Chambre c " +
-            "WHERE c.typeChambre = :type " +
-            "AND c.bloc.foyer.nomFoyer = :nomFoyer " +
-            "AND c.numeroChambre NOT IN (SELECT r.chambre.numeroChambre FROM Reservation r)")
-    List<Chambre> findChambresNonReservees(@Param("nomFoyer") String nomFoyer, @Param("type") TypeChambre type);
-
-
-    @Query("SELECT c FROM Chambre c WHERE c.bloc.idBloc = :idBloc AND c.typeChambre = :typeC")
-    List<Chambre> findChambresByBlocAndTypeJPQL(@Param("idBloc") long idBloc, @Param("typeC") TypeChambre typeC);
-
-    List<Chambre> findByBlocIdBlocAndTypeChambre(long idBloc, TypeChambre typeC);
-
-    Chambre findFirstByBlocAndDisponible(Bloc bloc, boolean b);
+//            "WHERE c.typeChambre = :type " +
+//            "AND c.bloc.foyer.nomFoyer = :nomFoyer " +
+//            "AND c.numeroChambre NOT IN (SELECT r.chambre.numeroChambre FROM Reservation r)")
+//    List<Chambre> findChambresNonReservees(@Param("nomFoyer") String nomFoyer, @Param("type") TypeChambre type);
+//
+//
+//    List<Chambre> findByBlocIdBlocAndTypeChambre(long idBloc, TypeChambre typeC);
+//
+//    Chambre findFirstByBlocAndDisponible(Bloc bloc, boolean b);
 }
